@@ -32,6 +32,7 @@ def main():
     len = 100
     lim = 25
     learning_rate = 0.1
+    epochs = 200
     xylim = [0, 1]
     normalize = ''
 
@@ -43,6 +44,7 @@ def main():
         xmax[1] = float(input('Mayor altura(m): '))
         lim = float(input('Limite de sobrepeso: '))
         learning_rate = float(input('Tasa de aprendizaje(0-1): '))
+        epochs = int(input('Epocas: '))
         xylim[0] = float(input('Limite inferior de la grafica: '))
         xylim[1] = float(input('Limite superior de la grafica: '))
         normalize = input('Normalizar datos? (s/n): ')
@@ -53,7 +55,7 @@ def main():
         x = normalizeData(x)
 
     neurona = perceptron.Perceptron(x.shape[1], learning_rate)
-    neurona.train(x, y)
+    neurona.train(x, y, epochs)
 
     d = drawing.Draw(xlim=xylim, ylim=xylim)
     d.drawNeuron(neurona)
